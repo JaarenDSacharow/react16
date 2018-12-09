@@ -33,7 +33,8 @@ class App extends Component {
  //handler to update a name
   nameChangedHandler = (event, id) => {
 
-    //first find the spot in state that matches the ID argument
+    //first find the spot in state that matches the ID argument, so we
+    // know where it is in the 'people' state object
     const personIndex = this.state.people.findIndex(p => {
       return p.id === id;
     });
@@ -58,11 +59,16 @@ class App extends Component {
     });
   }
 
+
+  //simple handler to toggle visibility
+
   toggleShowPeopleHandler = () => {
     this.setState({
       showPeople: !this.state.showPeople
     })
   }
+
+  //handler to remove a person at a given index
 
   deletePersonHandler = (index) => {
 
