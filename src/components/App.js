@@ -48,12 +48,12 @@ class App extends Component {
      //change the copy of that person object with the name passed in from the event target
     person.name = event.target.value; 
 
-    //make a copy of state with the spread operator
+    //make a copy of state with the spread operator, so we don't mutate state directly
     const people = [...this.state.people]; 
     //on that copy, replace the value with the single person copy 
     people[personIndex] = person;
 
-    //finally, set state to the whole copy
+    //finally, set state to the whole copy so we don't mutate state directly
     this.setState({
       people: people
     });
@@ -72,9 +72,13 @@ class App extends Component {
 
   deletePersonHandler = (index) => {
 
-    const people = [...this.state.people]; //use the spread operator to make a copy rather than mutating state
+    //use the spread operator to make a copy rather than mutating state
+    const people = [...this.state.people]; 
     
-    people.splice(index, 1);
+    //remove the element at the passed index from the copy
+    people.splice(index, 1); 
+
+    //now update the state with the copy
     this.setState({
       people: people
     })
