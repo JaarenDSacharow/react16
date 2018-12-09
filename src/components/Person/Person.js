@@ -1,5 +1,5 @@
 import React from 'react';
-import './Person.css'
+import './Person.css';
 
 //functional components are best practice
 const person = (props) => {
@@ -8,9 +8,10 @@ const person = (props) => {
 
     return (
         <div className="Person">
-            <p onClick={click}>Hi, I'm a person, my name is {name} and I am {age} years old.</p>
+            <p>Hi, I'm a person, my name is {name} and I am {age} years old.</p>
             <p>{props.children}</p>
             <input type="text"  onChange={changed} value={name}/>
+            <p><button onClick={click}>Delete Person</button></p>
         </div>
 
     );
