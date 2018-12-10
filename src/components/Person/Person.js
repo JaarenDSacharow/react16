@@ -8,7 +8,7 @@ const person = (props) => {
 
     return (
         <div className="Person">
-            <p>Hi, I'm a person, my name is {name} and I am {age} years old.</p>
+            <p>Hi, my name is {name} and I am {age} years old.</p>
             <p>{props.children}</p>
             <input type="text"  onChange={changed} value={name}/>
             <p><button onClick={click}>Delete Person</button></p>

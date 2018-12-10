@@ -31,10 +31,23 @@
   }
 }
 
-.updateButton {
-  background-color: 'white';
+.toggleButtonVisible, .toggleButtonHidden {
+  background-color: red;
   font: inherit;
   border: 1px solid blue;
   padding: '8px';
   cursor: pointer;
+  color:white;
+}
+
+.toggleButtonHidden {
+  background-color: green;
+}
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight:bold;
 }

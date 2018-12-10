@@ -108,11 +108,22 @@ class App extends Component {
         </div>
       )
     }
+    //to test dymanic class injection
+    const classes = [];
+
+    if(this.state.people.length <= 2 ){
+      classes.push('red');
+    }
+
+    if(this.state.people.length <=1){
+      classes.push('bold');
+    }
 
     return (
       <div className="App">
-      <h1>Hi, this is a React App</h1>
-      <button className="updateButton" onClick={() => this.toggleShowPeopleHandler()}>Show People</button>        
+      <h1>React 16 App</h1>
+      <p className={classes.join(' ')}>Customer List</p>
+      <button className={this.state.showPeople ? "toggleButtonVisible" : "toggleButtonHidden" }onClick={() => this.toggleShowPeopleHandler()}>Show People</button>        
         {people}
       </div>
     );
