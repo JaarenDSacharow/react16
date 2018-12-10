@@ -1,6 +1,6 @@
 import React from 'react';
 import './Main.css';
-import Aux from '../hoc/Aux';  //added this HOC merely to avoid having to wrap the adjaceny JSX elements in a div tag
+import Aux from '../../hoc/Aux';  //added this HOC merely to avoid having to wrap the adjaceny JSX elements in a div tag
 
 const main = (props) => {
      //to test dymanic class injection
