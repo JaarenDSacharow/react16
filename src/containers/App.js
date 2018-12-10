@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './App.css';
 import Main from '../components/Main/Main';
-import People from '../components/People/People';
+//import People from '../components/People/People';
+import PeopleStateful from '../components/People/PeopleStateful'
 
-class App extends Component {
+class App extends PureComponent {  //pure component automatically implements shouldComponentUpdate automatically
 // App serves as the container, try to have state set here only
 //you can only use state in a class that extends Component
 //STATEFUL components are typically called containers
 //STATELESS components rely on props and not state and cannot alter state
-  state = { 
+
+constructor(props){
+  super(props); //you have to define super if you create your own constructor
+
+  console.log('[App.js] Inside Constructor');
+
+  this.state = { 
     showPeople: false,
     people : [
       {
@@ -33,6 +40,30 @@ class App extends Component {
 
     ]
   }
+
+}
+
+componentWillMount(){
+  console.log('[App.js] Inside componentWillMount()');
+}
+
+componentDidMount(){
+  console.log('[App.js] Inside componentDidMount()');
+}
+
+componentDidUpdate(){
+  console.log('[App.js] Inside componentDidUpdate()');
+}
+ 
+//this is commented out because this is a pure component rather than component
+//could be a performance hit to do everywhere
+//  shouldComponentUpdate( nextProps, nextState){
+//   console.log('[App.js] Inside shouldComponentUpdate()', nextProps, nextState);
+//   //return true;
+//   //you can return false here based on a condition, there will be no rerender
+//   return nextState.people !== this.state.people ||
+//     nextState.showPeople !== this.state.showPeople
+//  }
 
  //handler to update a name
   nameChangedHandler = (event, id) => {
@@ -91,13 +122,13 @@ class App extends Component {
   }
 
   render() {
-
+    console.log('[App.js] Inside render()');
     let people = null;
 
     if(this.state.showPeople) {
       people = (
         <div>
-          <People 
+          <PeopleStateful 
           people={this.state.people}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler}  
@@ -107,6 +138,8 @@ class App extends Component {
     }
     return (
       <div className="App">
+      <p>This button will always update state and trigger a rerender.  It's here to show how shouldComponentUpdate helps.</p>
+      <button onClick={()=>{this.setState({showPeople:true})}}>Show People (Demo shouldComponentUpdate)</button>
       <Main
         title={this.props.title}
         people={this.state.people}
