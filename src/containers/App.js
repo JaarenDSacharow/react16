@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Person from '../components/People/Person/Person';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
@@ -101,7 +101,6 @@ class App extends Component {
                  key = {person.id}  //<-- to manipulate the list more efficiently, also kills that annoying error
                  >
                     <Person
-          
                       changed = {(event) => this.nameChangedHandler(event, person.id )}
                       click={()=>this.deletePersonHandler(index)}  // you can pass references to a method to a child component
                       name={person.name} 
