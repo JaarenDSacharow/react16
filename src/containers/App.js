@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Main from '../components/Main/Main';
 import People from '../components/People/People';
 
 class App extends Component {
@@ -114,10 +115,12 @@ class App extends Component {
 
     return (
       <div className="App">
-      <h1>React 16 App</h1>
-      <p className={classes.join(' ')}>Customer List</p>
-      <button className={this.state.showPeople ? "toggleButtonVisible" : "toggleButtonHidden" }onClick={() => this.toggleShowPeopleHandler()}>Show People</button>        
-        {people}
+      <Main 
+        classes={classes.join(' ')}
+        click={this.toggleShowPeopleHandler}
+        buttonClass={this.state.showPeople ? "toggleButtonVisible" : "toggleButtonHidden"}
+     />
+      {people}
       </div>
     );
   }
