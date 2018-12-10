@@ -14,8 +14,8 @@ const main = (props) => {
     }
     return(
         <div>
-            <h1>React 16 App</h1>
-            <p className={classes.join(' ')}>Customer List</p>
+            <h1>{props.title}</h1>
+            <p className={classes.join(' ')}>VIP List</p>
             <button className={props.buttonClass}onClick={() => props.click()}>Show People</button>
         </div>
     );

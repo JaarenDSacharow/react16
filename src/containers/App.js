@@ -4,8 +4,11 @@ import Main from '../components/Main/Main';
 import People from '../components/People/People';
 
 class App extends Component {
-
-  state = { //you can only use state in a class that extends Component
+// App serves as the container, try to have state set here only
+//you can only use state in a class that extends Component
+//STATEFUL components are typically called containers
+//STATELESS components rely on props and not state and cannot alter state
+  state = { 
     showPeople: false,
     people : [
       {
@@ -105,6 +108,7 @@ class App extends Component {
     return (
       <div className="App">
       <Main
+        title={this.props.title}
         people={this.state.people}
         click={this.toggleShowPeopleHandler}
         buttonClass={this.state.showPeople ? "toggleButtonVisible" : "toggleButtonHidden"}
