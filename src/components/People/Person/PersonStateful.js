@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import './Person.css';
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
+import { AuthContext } from '../../../containers/App';
 
 
 //stateful version of the person component
@@ -12,6 +13,11 @@ class PersonStateful extends Component {
         super(props); //you have to define super if you create your own constructor
       
         console.log('[PersonStateful.js] Inside Constructor');
+
+        //new way of using ref in react 16.3, simplified syntax below 
+        // in the ref tag below
+
+        this.inputElement = React.createRef();
       
     }
 
@@ -26,7 +32,7 @@ class PersonStateful extends Component {
         //see ref in the input element below for syntax.
 
         if (this.props.position === 0) {
-            this.inputElement.focus();
+            this.inputElement.current.focus();
         }
       }
 
@@ -37,14 +43,18 @@ class PersonStateful extends Component {
 
      return(
         <Aux>
-            <p>Hi, my name is {name} and I am {age} years old.</p>
-            <p>{this.props.children}</p>
-            <input
-                ref={(inp) => { this.inputElement = inp }}
-                type="text"  
-                onChange={changed} 
-                value={name}/>
-            <p><button onClick={click}>Delete Person</button></p>
+            <AuthContext.Consumer>
+                {auth => auth ? <p>I'm authenticated!</p> : null}
+            </AuthContext.Consumer> 
+                <p>Hi, my name is {name} and I am {age} years old.</p>
+                <p>{this.props.children}</p>
+                <input
+                    ref={this.inputElement}
+                    type="text"  
+                    onChange={changed} 
+                    value={name}/>
+                <p><button onClick={click}>Delete Person</button></p>
+          
         </Aux>
      ) 
   }

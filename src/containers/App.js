@@ -6,6 +6,8 @@ import PeopleStateful from '../components/People/PeopleStateful'
 import Aux from '../hoc/Aux';
 import withClass from '../hoc/withClass';
 
+export const AuthContext = React.createContext(false);
+
 class App extends PureComponent {  //pure component implements shouldComponentUpdate logic automatically
 // App serves as the container, try to have state set here only
 //you can only use state in a class that extends Component
@@ -18,6 +20,7 @@ constructor(props){
   console.log('[App.js] Inside Constructor');
 
   this.state = { 
+    authenticated: false,
     showPeople: false,
     toggleClicked: 0, 
     people : [
@@ -130,6 +133,12 @@ componentDidUpdate(){
     })
   }
 
+  loginHandler = () => {
+    this.setState({
+      authenticated: true
+    });
+  }
+
   render() {
     console.log('[App.js] Inside render()');
     let people = null;
@@ -154,8 +163,12 @@ componentDidUpdate(){
           people={this.state.people}
           click={this.toggleShowPeopleHandler}
           buttonClass={this.state.showPeople ? "toggleButtonVisible" : "toggleButtonHidden"}
+          login={this.loginHandler}
       />
+      <AuthContext.Provider value={this.state.authenticated}>
         {people}
+      </AuthContext.Provider>
+        
       </Aux>
     );
   }

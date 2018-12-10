@@ -19,6 +19,7 @@ const main = (props) => {
             <p className={classes.join(' ')}>VIP List</p>
             <p>Button Click counter: {props.toggleClicked}</p>
             <button className={props.buttonClass}onClick={() => props.click()}>Show People</button>
+            <p><button onClick={props.login}>Log in</button></p>
         </Aux>
     );
 }
