@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Person.css';
+import Aux from '../../../hoc/Aux';
+import withClass from '../../../hoc/withClass';
 
 //stateful version of the person component
 
@@ -21,18 +23,18 @@ class PersonStateful extends Component {
 
   render() {
     console.log('[PersonStateful.js] Inside render()');
-    
+
     const { name, age, click, changed } = this.props;
      return(
-        <div className="Person">
+        <Aux>
             <p>Hi, my name is {name} and I am {age} years old.</p>
             <p>{this.props.children}</p>
             <input type="text"  onChange={changed} value={name}/>
             <p><button onClick={click}>Delete Person</button></p>
-        </div>
+        </Aux>
      ) 
   }
 
 }
 
-export default PersonStateful;
+export default withClass(PersonStateful, "Person");

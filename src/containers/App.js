@@ -3,8 +3,10 @@ import './App.css';
 import Main from '../components/Main/Main';
 //import People from '../components/People/People';
 import PeopleStateful from '../components/People/PeopleStateful'
+import Aux from '../hoc/Aux';
+import withClass from '../hoc/withClass';
 
-class App extends PureComponent {  //pure component automatically implements shouldComponentUpdate automatically
+class App extends PureComponent {  //pure component implements shouldComponentUpdate logic automatically
 // App serves as the container, try to have state set here only
 //you can only use state in a class that extends Component
 //STATEFUL components are typically called containers
@@ -137,19 +139,19 @@ componentDidUpdate(){
       )
     }
     return (
-      <div className="App">
-      <p>This button will always update state and trigger a rerender.  It's here to show how shouldComponentUpdate helps.</p>
-      <button onClick={()=>{this.setState({showPeople:true})}}>Show People (Demo shouldComponentUpdate)</button>
-      <Main
-        title={this.props.title}
-        people={this.state.people}
-        click={this.toggleShowPeopleHandler}
-        buttonClass={this.state.showPeople ? "toggleButtonVisible" : "toggleButtonHidden"}
-     />
-      {people}
-      </div>
+      <Aux>
+        <p>This button will always update state and trigger a rerender.  It's here to show how shouldComponentUpdate helps.</p>
+        <button onClick={()=>{this.setState({showPeople:true})}}>Show People (Demo shouldComponentUpdate)</button>
+        <Main
+          title={this.props.title}
+          people={this.state.people}
+          click={this.toggleShowPeopleHandler}
+          buttonClass={this.state.showPeople ? "toggleButtonVisible" : "toggleButtonHidden"}
+      />
+        {people}
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, "App");
