@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import './Person.css';
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
+
 
 //stateful version of the person component
 
@@ -34,6 +36,15 @@ class PersonStateful extends Component {
         </Aux>
      ) 
   }
+}
+
+//proptypes can only be used in stateful components.
+
+PersonStateful.propTypes = {
+    click: propTypes.func,
+    name: propTypes.string,
+    age: propTypes.number,
+    changed: propTypes.func,
 
 }
 
