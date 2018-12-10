@@ -1,0 +1,26 @@
+.toggleButtonVisible, .toggleButtonHidden {
+    background-color: red;
+    font: inherit;
+    border: 1px solid blue;
+    padding: '8px';
+    cursor: pointer;
+    color:white;
+  }
+  .toggleButtonVisible:hover {
+    background-color: salmon;
+  }
+  
+  .toggleButtonHidden {
+    background-color: green;
+  }
+  .toggleButtonHidden:hover {
+    background-color: lightgreen;
+  }
+
+.red {
+    color: red;
+  }
+  
+  .bold {
+    font-weight:bold;
+  }

@@ -102,21 +102,10 @@ class App extends Component {
         </div>
       )
     }
-    //to test dymanic class injection
-    const classes = [];
-
-    if(this.state.people.length <= 2 ){
-      classes.push('red');
-    }
-
-    if(this.state.people.length <=1){
-      classes.push('bold');
-    }
-
     return (
       <div className="App">
-      <Main 
-        classes={classes.join(' ')}
+      <Main
+        people={this.state.people}
         click={this.toggleShowPeopleHandler}
         buttonClass={this.state.showPeople ? "toggleButtonVisible" : "toggleButtonHidden"}
      />
