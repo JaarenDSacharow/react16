@@ -39,9 +39,15 @@
   cursor: pointer;
   color:white;
 }
+.toggleButtonVisible:hover {
+  background-color: salmon;
+}
 
 .toggleButtonHidden {
   background-color: green;
+}
+.toggleButtonHidden:hover {
+  background-color: lightgreen;
 }
 
 .red {

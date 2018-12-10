@@ -1,7 +1,8 @@
 import React from 'react';
 import './Person.css';
 
-//functional components are best practice
+//functional components are best practice for most components 
+// except for higher components were state is managed
 const person = (props) => {
 
     const { name, age, click, changed } = props;
