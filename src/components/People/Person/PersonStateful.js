@@ -21,24 +21,36 @@ class PersonStateful extends Component {
       
       componentDidMount(){
         console.log('[PersonStateful.js] Inside componentDidMount()');
+        //this is the best place to set focus based on ref.
+        // the position is passed in from the parent via prop.
+        //see ref in the input element below for syntax.
+
+        if (this.props.position === 0) {
+            this.inputElement.focus();
+        }
       }
 
   render() {
     console.log('[PersonStateful.js] Inside render()');
 
     const { name, age, click, changed } = this.props;
+
      return(
         <Aux>
             <p>Hi, my name is {name} and I am {age} years old.</p>
             <p>{this.props.children}</p>
-            <input type="text"  onChange={changed} value={name}/>
+            <input
+                ref={(inp) => { this.inputElement = inp }}
+                type="text"  
+                onChange={changed} 
+                value={name}/>
             <p><button onClick={click}>Delete Person</button></p>
         </Aux>
      ) 
   }
 }
 
-//proptypes can only be used in stateful components.
+//propTypes can only be used in stateful components.
 
 PersonStateful.propTypes = {
     click: propTypes.func,

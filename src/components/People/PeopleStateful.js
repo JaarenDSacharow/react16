@@ -37,6 +37,7 @@ class PeopleStateful extends Component {
             <ErrorBoundary key={person.id} >
                 <Personstateful
                   key={person.id}
+                  position={index}
                   changed = {(event) => this.props.changed(event, person.id )}
                   click={()=>this.props.clicked(index)}  // you can pass references to a method to a child component
                   name={person.name} 
