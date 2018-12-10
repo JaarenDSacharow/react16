@@ -1,5 +1,6 @@
 import React from 'react';
 import './Main.css';
+import Aux from '../hoc/Aux';  //added this HOC merely to avoid having to wrap the adjaceny JSX elements in a div tag
 
 const main = (props) => {
      //to test dymanic class injection
@@ -13,11 +14,11 @@ const main = (props) => {
         classes.push('bold');
     }
     return(
-        <div>
+        <Aux>
             <h1>{props.title}</h1>
             <p className={classes.join(' ')}>VIP List</p>
             <button className={props.buttonClass}onClick={() => props.click()}>Show People</button>
-        </div>
+        </Aux>
     );
 }
 
