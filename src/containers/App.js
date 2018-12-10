@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from '../components/People/Person/Person';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import People from '../components/People/People';
 
 class App extends Component {
 
@@ -94,23 +93,12 @@ class App extends Component {
     if(this.state.showPeople) {
       people = (
         <div>
-          { 
-            this.state.people.map((person, index) => {
-              return (
-                <ErrorBoundary 
-                 key = {person.id}  //<-- to manipulate the list more efficiently, also kills that annoying error
-                 >
-                    <Person
-                      changed = {(event) => this.nameChangedHandler(event, person.id )}
-                      click={()=>this.deletePersonHandler(index)}  // you can pass references to a method to a child component
-                      name={person.name} 
-                      age={person.age}>
-                      {person.hobbies}
-                    </Person>
-                </ErrorBoundary>
-              )
-            })
-          }
+          <People 
+          people={this.state.people}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler }  
+          />
+
         </div>
       )
     }
