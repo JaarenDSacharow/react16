@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
@@ -36,6 +37,8 @@ class App extends Component {
     //first find the spot in state that matches the ID argument, so we
     // know where it is in the 'people' state object
     const personIndex = this.state.people.findIndex(p => {
+      //for some reason breakpoints wouldn't pause without this line below
+      //debugger;
       return p.id === id;
     });
 
@@ -94,14 +97,18 @@ class App extends Component {
           { 
             this.state.people.map((person, index) => {
               return (
-                <Person 
-                  key = {person.id} //<-- to manipulate the list more efficiently, also kills that annoying error
-                  changed = {(event) => this.nameChangedHandler(event, person.id )}
-                  click={()=>this.deletePersonHandler(index)}  // you can pass references to a method to a child component
-                  name={person.name} 
-                  age={person.age}>
-                  {person.hobbies}
-                </Person>
+                <ErrorBoundary 
+                 key = {person.id}  //<-- to manipulate the list more efficiently, also kills that annoying error
+                 >
+                    <Person
+          
+                      changed = {(event) => this.nameChangedHandler(event, person.id )}
+                      click={()=>this.deletePersonHandler(index)}  // you can pass references to a method to a child component
+                      name={person.name} 
+                      age={person.age}>
+                      {person.hobbies}
+                    </Person>
+                </ErrorBoundary>
               )
             })
           }
