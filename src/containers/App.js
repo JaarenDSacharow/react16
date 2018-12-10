@@ -19,6 +19,7 @@ constructor(props){
 
   this.state = { 
     showPeople: false,
+    toggleClicked: 0, 
     people : [
       {
         id: 1,
@@ -101,9 +102,15 @@ componentDidUpdate(){
 
   //simple handler to toggle visibility
 
+  //pass in prevState to make sure no other state version interferes
+  // setState is async!
   toggleShowPeopleHandler = () => {
-    this.setState({
-      showPeople: !this.state.showPeople
+    this.setState((prevState, props) => { 
+      return{
+        showPeople: !this.state.showPeople,
+        toggleClicked: prevState.toggleClicked + 1 
+      }
+      
     })
   }
 
@@ -140,9 +147,9 @@ componentDidUpdate(){
     }
     return (
       <Aux>
-        <p>This button will always update state and trigger a rerender.  It's here to show how shouldComponentUpdate helps.</p>
-        <button onClick={()=>{this.setState({showPeople:true})}}>Show People (Demo shouldComponentUpdate)</button>
+        <button onClick={()=>{this.setState({showPeople:true})}}>Show People (Demo pure component/shouldComponentUpdate)</button>
         <Main
+          toggleClicked={this.state.toggleClicked}
           title={this.props.title}
           people={this.state.people}
           click={this.toggleShowPeopleHandler}
