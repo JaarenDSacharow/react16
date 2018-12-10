@@ -96,9 +96,8 @@ class App extends Component {
           <People 
           people={this.state.people}
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler }  
+          changed={this.nameChangedHandler}  
           />
-
         </div>
       )
     }
